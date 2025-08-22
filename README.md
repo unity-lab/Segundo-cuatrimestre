@@ -49,3 +49,8 @@
 - GITHUB: juliofernandolepore
 - Stack: full stack (react js - golang - postgresql)
 
+#### Augusto Andres Raffaeli
+-DNI: 33414200
+-CORREO:andresraffaeli33@gmail.com
+-GITHUB:Andrés04-2024
+
