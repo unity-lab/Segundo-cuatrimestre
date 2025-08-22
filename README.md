@@ -49,3 +49,7 @@
 - GITHUB: juliofernandolepore
 - Stack: full stack (react js - golang - postgresql)
 
+#### Malen villarreal
+- DNI: 38333320
+- CORREO: malenvillarreal74@gmail.com
+- GITHUB: malen094
