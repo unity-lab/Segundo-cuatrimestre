@@ -53,3 +53,8 @@
 - DNI: 38333320
 - CORREO: malenvillarreal74@gmail.com
 - GITHUB: malen094
+
+#### Augusto Andres Raffaeli
+- DNI: 33414200
+- CORREO:andresraffaeli33@gmail.com
+- GITHUB:Andrés04-2024
