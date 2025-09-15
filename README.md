@@ -32,11 +32,6 @@
 - CORREO: candebarjollo@gmail.com	
 - GITHUB: candebar
 
-#### Matilde Maidana Sandoval 
-- DNI: 33948480	
-- CORREO: dis.matilde.m@gmail.com
-- GITHUB: Matilde-ms
-
 #### Gerardo Lauro Romero 
 - DNI: 35782538	
 - CORREO: gerardolauroromero@gmail.com
@@ -48,7 +43,6 @@
 - CORREO: juliofernandolepore@gmail.com
 - GITHUB: juliofernandolepore
 - Stack: full stack (react js - golang - postgresql)
-
 
 #### Malen melipal villarreal
 - DNI: 38333320
