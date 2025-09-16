@@ -56,6 +56,34 @@ class ServiciosUsuario:
         except Exception as e:            
             return False, print(f"""Error al insertar el usuario:{usuario.email}, 
             el Error es: {e}""")
+
+    def ver_todos(self):        
+        try:
+            if not conexion:
+                print("No se estableció conexión con la DB.")
+                return False
+            cursor = self.db_manager.get_cursor()            
+            cursor.execute("SELECT nombre, apellido, email, telefono FROM usuarios_login")
+            # tengo que parsear lo resultados a lenguage nativo
+            lista_resultados_sql = cursor.fetchall()
+            self.db_manager.connection.commit()
+            # declaro una lista           
+            usuarios = []
+            # necesito un for para iterar y convertir a python nativo
+            for fila in listado_resultados_sql:
+                usuario_dict = {
+                    "nombre": fila[0],
+                    "apellido": fila[1],
+                    "email": fila[2],
+                    "telefono": fila[3]
+                }
+                usuarios.append(usuario_dict)
+            
+            return usuarios
+        
+        except Exception as e:
+            print(f"Error al obtener todos los usuarios: {e}")
+            return None        
         
 
     

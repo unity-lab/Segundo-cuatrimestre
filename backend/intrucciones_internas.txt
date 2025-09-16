@@ -6,11 +6,11 @@
 
 3. instalar dependencias o librerias en python para ese entorno virtual, se ejecuta en el nivel 
 donde esta el .txt
-    pip install -r .\requirements.txt
+    pip install -r .\requirements.txt y luego actualizar python.exe -m pip install --upgrade pip
 
 4. ejecutar el comando para correr el server de fastapi (libreria api de python simple), este comando se ejecuta
 en el nivel donde se encuentre el archivo main.py  (en este caso suelto en dir backend)
-    uvicorn maim:app  
+    uvicorn main:app  
 
 5. con el comando ctrl + c en la parte de la terminal se detiene la ejecucion del servidor  
 
