@@ -1,0 +1,27 @@
+name: 'desarrollofullstack'
+
+services:
+  contenedordb:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE}
+      MYSQL_USER: ${MYSQLUSER}
+      MYSQL_PASSWORD: ${MYSQLPASSWORD}
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin-app
+    restart: unless-stopped
+    environment:
+      PMA_HOST: contenedordb
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      - contenedordb
