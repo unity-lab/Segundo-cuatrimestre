@@ -1,0 +1,75 @@
+
+.contenedorPrincipal{
+  background-color: rgb(243, 244, 245);
+  color: rgb(18, 24, 112); 
+
+@media (max-width: 576px) {
+  h1 { font-size: 1.5rem; }
+  nav ul { flex-direction: column; }
+}
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+}
+}
+@media (min-width: 1200px) {
+  .container { max-width: 1400px; }
+}
+
+.carrusel {
+ display: flex;
+ justify-content: center;
+ margin: auto;
+}
+.titulo1 {
+color: rgb(18, 24, 112);
+display: flex;
+justify-content: center;
+margin-bottom: 30px;
+margin-top: 30px;
+}
+.parrafo1{
+color: rgb(28, 28, 28);
+  display: flex;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.titulo2{
+color: rgb(11, 14, 54);
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.texto1{
+color: rgb(28, 28, 28);
+  display: flex;
+  justify-content: center;
+  margin: 10px 30px 10px 30px;
+}
+.lista1{
+color: rgb(28, 28, 28);;
+
+  justify-content: center;
+  margin: 10px 30px 10px 30px;
+}
+.pie{
+  color:rgb(28, 28, 28);;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+.custom-navbar{
+  background-color:rgb(7, 12, 72)
+}
+.cards{
+  display: flex;
+  flex-wrap: wrap;
+   gap: 20px;
+   justify-content: center;
+}
+.card {
+  flex: 1 1 1 30%;   
+}
