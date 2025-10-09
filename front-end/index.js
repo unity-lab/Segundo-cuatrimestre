@@ -4,7 +4,6 @@ const validarRegistro = (event) => {
     // coloco un prevent default para evitar que se envie el formulario
     event.preventDefault();
     let esValido = true;
-
     /*Obtener los valores o values (propiedad especifica) de los campos,
     se le aplica el metodo trim, para remover espacios antes y despues del string
     */
@@ -15,7 +14,6 @@ const validarRegistro = (event) => {
     const fechaNacimiento = document.getElementById('fecha_nacimiento').value;
     const password = document.getElementById('password').value;
     const repassword = document.getElementById('repassword').value;
-
     // VALIDACION DE NOMBRE(min y max del string)
     if (nombre.length < 3){
         Swal.fire({
@@ -33,7 +31,6 @@ const validarRegistro = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
-
     // VALIDACION DE APELLIDO (min y max del string)
     if (apellido.length < 2){
         Swal.fire({
@@ -50,8 +47,7 @@ const validarRegistro = (event) => {
                 icon: 'warning',
                 confirmButtonText: 'Reintentar'});
         esValido = false;
-    }
- 
+    } 
     // validacion del largo del dni (es un number)
     if (dni < 1000000 || dni > 200000000 || isNaN(dni)) {
         Swal.fire({
@@ -61,7 +57,6 @@ const validarRegistro = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
-
     //Validar Email (Formato) con expresion regular
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
@@ -72,7 +67,6 @@ const validarRegistro = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
-
     //Validar Contraseña (Longitud y Coincidencia)
     if (password.length < 8) {
         Swal.fire({
@@ -82,7 +76,6 @@ const validarRegistro = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
-
     if (password !== repassword) {
         Swal.fire({
                 title: '¡Aviso de passwords!',
@@ -91,7 +84,6 @@ const validarRegistro = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
-
     // Validar Fecha de Nacimiento    
     if (fechaNacimiento) {
         const fechaIngresada = new Date(fechaNacimiento);
@@ -114,16 +106,16 @@ const validarRegistro = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
-
     if (esValido == true) {
         Swal.fire({
                 title: '¡Registro Completado!',
                 text: 'aguarde por favor.',
                 icon: 'success',
                 confirmButtonText: 'continuar'});
+        // establezco 4 segundos antes que me redirija con setTimeout
+        setTimeout(()=>{window.location.replace('login.html')}, 4000);        
+    }
         }
-}
-
 // funcion flecha para validar login
 const validarLogin = (e) =>{
     // coloco un prevent default para evitar que se envie el formulario
@@ -179,9 +171,10 @@ const validarLogin = (e) =>{
                 text: 'aguarde por favor.',
                 icon: 'success',
                 confirmButtonText: 'continuar'});
+                // establezco 4 segundos antes que me redirija con setTimeout
+                setTimeout(()=>{window.location.replace('redireccion.html')}, 4000);
         }
 }
-
 // funcion flecha para validar el envio de consultas de potenciales clientes
 const validarConsulta = (event) => {
     // coloco un prevent default para evitar que se envie el formulario
@@ -221,6 +214,9 @@ const validarConsulta = (event) => {
                 text: 'aguarde por favor.',
                 icon: 'success',
                 confirmButtonText: 'continuar'});
+                // voy a redireccionar a galeria de fotos luego de 4 segundos
+                setTimeout(()=>{window.location.replace('galeria.html')}, 4000);
+                               
         }
 }
 
