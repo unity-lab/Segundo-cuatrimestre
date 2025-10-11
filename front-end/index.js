@@ -1,5 +1,34 @@
 /* a continuacion se desarrollan las arrow funciones para validar distintos formularios */
-// esta funcion unicamente
+
+// esta funcion es un fetch que controla el funcioamiento del envio de datos a la api de prueba "https://formsubmit.co/"
+const reutilizarFetch = (urlDestino, contenido) => {
+    let operacion = true
+     fetch(urlDestino, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', 
+            'Accept': 'application/json'
+        },
+        // Convertir el objeto JavaScript a una cadena JSON
+        body: JSON.stringify(contenido) 
+    })
+    .then(response => {        
+        if (response.ok) {
+            console.log('El formulario se ha enviado correctamente.');
+            operacion = response.ok
+        } else {
+            console.log('Hubo un error al enviar el formulario.');
+            operacion = response.ok
+        }
+        return operacion
+    })
+    .catch(error => {
+        console.log(`No se pudo contactar con el servidor de la api. ${error}`);
+        return false
+    });
+    return operacion;
+}
+//validar cada uno de los campos de registro del nuevo usuario
 const validarRegistro = (event) => {
     // coloco un prevent default para evitar que se envie el formulario
     event.preventDefault();
@@ -121,10 +150,8 @@ const validarLogin = (e) =>{
     // coloco un prevent default para evitar que se envie el formulario
     e.preventDefault();
     let esValido = true;
-
-    /*Obtener los valores o values (propiedad especifica) de los campos,
-    se le aplica el metodo trim, para remover espacios antes y despues del string
-    */
+    /*Obtener los valores o values (propiedad especifica) de los campos, se le aplica el metodo trim, para remover espacios antes y 
+    despues del string  */
     const emailUsuario = document.getElementById('usuario').value.trim();
     const password = document.getElementById('password').value.trim();
        
@@ -179,18 +206,16 @@ const validarLogin = (e) =>{
 const validarConsulta = (event) => {
     // coloco un prevent default para evitar que se envie el formulario
     event.preventDefault();
-    let esValido = true;
-
-    /*Obtener los valores o values (propiedad especifica) de los campos,
-    se le aplica el metodo trim, para remover espacios antes y despues del string
-    */
-    const emailRemitente = document.getElementById('exampleFormControlInput1').value.trim();
-    const consulta = document.getElementById('exampleFormControlTextarea1').value.trim();
-       
-    
+    /* Obtener los valores o values (propiedad especifica) de los campos, se le aplica el metodo trim, para remover espacios antes y 
+    despues del string  */     
+    const consulta = {
+        email : document.getElementById('exampleFormControlInput1').value.trim(),
+        infoConsulta : document.getElementById('exampleFormControlTextarea1').value.trim(),
+    }       
+    let esValido = true
     //Validar el Email remitente(Formato) con expresion regular
     const expresion = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!expresion.test(emailRemitente)) {
+    if (!expresion.test(consulta.email)) {
         Swal.fire({
                 title: '¡Aviso de email invalido!',
                 text: 'coloque un email valido',
@@ -200,7 +225,7 @@ const validarConsulta = (event) => {
     }
 
     //Validar Contraseña (Longitud y Coincidencia) por el minimo de 8 caracteres del string
-    if (consulta.length < 50 || consulta.length > 250) {
+    if (consulta.infoConsulta.length < 50 || consulta.infoConsulta.length > 250) {
         Swal.fire({
                 title: '¡Consulta Invalida!',
                 text: 'coloque una consulta con un cuerpo entre 50 y 250 caracteres.',
@@ -208,15 +233,34 @@ const validarConsulta = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
-    if (esValido == true) {
-        Swal.fire({
+    //si paso a este punto es que todos los inputs son en principios validos
+    if (esValido) {
+        // declaro la variable para la url de la api
+        const urlconEmail = `https://formsubmit.co/ajax/${consulta.email}`;
+        //BLOQUE DE IMPLEMENTACION DE SMTP, adentro de este if ya todos los inputs son VALIDOS
+        esValido = reutilizarFetch(urlconEmail, consulta)
+        console.log(`el valor devuelto del fetch es: ${esValido}`)
+        if(!esValido){
+             Swal.fire({
+                title: '¡Fallo la operacion!',
+                text: 'reintente mas tarde.',
+                icon: 'error',
+                confirmButtonText: 'continuar'});
+        } 
+        if(esValido){
+        // este bloque se ejecuta si el metodo fetch tuvo exito o no con la url de prueba
+         Swal.fire({
                 title: '¡Consulta Completada!',
                 text: 'aguarde por favor.',
                 icon: 'success',
-                confirmButtonText: 'continuar'});
-                // voy a redireccionar a galeria de fotos luego de 4 segundos
-                setTimeout(()=>{window.location.replace('galeria.html')}, 4000);
-                               
-        }
+                confirmButtonText: 'continuar'}); 
+        }                     
+    }
+    if (esValido){
+        // voy a redireccionar a galeria de fotos luego de 4 segundos
+        setTimeout(()=>{window.location.replace('galeria.html')}, 4000);
+    }
 }
+
+
 
