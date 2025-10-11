@@ -1,4 +1,12 @@
-
+html {
+    height: 100%; 
+}
+body {
+    min-height: 100%; /* Asegura que el body sea al menos tan alto como la ventana */
+    display: flex;    /* Habilita Flexbox */
+    flex-direction: column; /* Apila los elementos verticalmente */
+    margin: 0;        /* Elimina los márgenes predeterminados del body */
+}
 .contenedorPrincipal{
   background-color: rgb(243, 244, 245);
   color: rgb(18, 24, 112); 
@@ -73,4 +81,9 @@ color: rgb(28, 28, 28);;
 }
 .card {
   flex: 1 1 1 30%;   
+}
+.footer-fijo {
+    /* position: fixed;  lo deja fijo */
+    bottom: 0;      /* Lo ancla a la parte inferior de la ventana */
+    width: 100%;    /* Asegura que ocupe todo el ancho */
 }
