@@ -70,7 +70,7 @@ class ServiciosUsuario:
             # declaro una lista           
             usuarios = []
             # necesito un for para iterar y convertir a python nativo
-            for fila in listado_resultados_sql:
+            for fila in lista_resultados_sql:
                 usuario_dict = {
                     "nombre": fila[0],
                     "apellido": fila[1],
