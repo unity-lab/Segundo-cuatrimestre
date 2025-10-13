@@ -42,7 +42,7 @@ const validarRegistro = (event) => {
     const email = document.getElementById('email').value.trim();
     const fechaNacimiento = document.getElementById('fecha_nacimiento').value;
     const password = document.getElementById('password').value;
-    const repassword = document.getElementById('repassword').value;
+    const repassword = document.getElementById('repassword').value;    
     // VALIDACION DE NOMBRE(min y max del string)
     if (nombre.length < 3){
         Swal.fire({
@@ -135,8 +135,8 @@ const validarRegistro = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
-    if (esValido == true) {
-        Swal.fire({
+    if (esValido == true) {      
+            Swal.fire({
                 title: '¡Registro Completado!',
                 text: 'aguarde por favor.',
                 icon: 'success',
@@ -148,14 +148,13 @@ const validarRegistro = (event) => {
 // funcion flecha para validar login
 const validarLogin = (e) =>{
     // coloco un prevent default para evitar que se envie el formulario
-    e.preventDefault();
+    e.preventDefault();    
     let esValido = true;
     /*Obtener los valores o values (propiedad especifica) de los campos, se le aplica el metodo trim, para remover espacios antes y 
     despues del string  */
     const emailUsuario = document.getElementById('usuario').value.trim();
     const password = document.getElementById('password').value.trim();
-       
-    
+    sessionStorage.setItem('usuario', emailUsuario)
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailUsuario.length < 10){
         Swal.fire({
@@ -191,15 +190,17 @@ const validarLogin = (e) =>{
                 text: 'coloque una contraseña valida al menos con 8 digitos.',
                 icon: 'warning',
                 confirmButtonText: 'Reintentar'});
-        esValido = false; }
-    if (esValido) {
+        esValido = false; }            
+
+    if (esValido) {                              
         Swal.fire({
                 title: '¡Login Completado!',
                 text: 'aguarde por favor.',
                 icon: 'success',
-                confirmButtonText: 'continuar'});
+                confirmButtonText: 'continuar'});                
                 // establezco 4 segundos antes que me redirija con setTimeout
                 setTimeout(()=>{window.location.replace('redireccion.html')}, 4000);
+                
         }
 }
 // funcion flecha para validar el envio de consultas de potenciales clientes
@@ -259,6 +260,22 @@ const validarConsulta = (event) => {
     if (esValido){
         // voy a redireccionar a galeria de fotos luego de 4 segundos
         setTimeout(()=>{window.location.replace('galeria.html')}, 4000);
+    }
+}
+
+// jugando con el dom y la carga de variables de sessionStorage
+// esta funcion se ejecuta con el evento onload del html, no es llamado por ningun submit o button onclick
+window.onload = () => {
+    const emailGuardado = sessionStorage.getItem('usuario'); // recupero el mail de la sesion local
+    let idBienvenido = document.getElementById('bienvenido'); // tomo el elemento con este id
+
+    if (emailGuardado && idBienvenido) {
+        idBienvenido.textContent = `¡Bienvenido/a, ${emailGuardado}!`;        
+        // Eliminar la variable después de usarla
+        sessionStorage.removeItem('usuario');
+    }
+    if (idBienvenido && emailGuardado == null || emailGuardado == ""){
+        idBienvenido.textContent = "Bienvenido/a. Por favor, inicie sesión.";
     }
 }
 
