@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+""" from fastapi import APIRouter
 from fastapi import Depends
 from app.models.usuarios_models import NuevoUsuario, ServiciosUsuario
 from app.middlewares.middleware_rol import only_admin, only_estandar
@@ -52,4 +52,4 @@ async def eliminar_usuario():
 @users.get("/cambiorol", dependencies=[Depends(only_admin)])
 async def editar_rol():
     # desarrollar la logica completa de todos los usuarios registrados
-    return {"mensaje": "edita el rol de un usuario (solo para admin)"}              
+    return {"mensaje": "edita el rol de un usuario (solo para admin)"}            """  
