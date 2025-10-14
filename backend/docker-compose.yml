@@ -11,7 +11,7 @@ services:
       MYSQL_USER: ${MYSQLUSER}
       MYSQL_PASSWORD: ${MYSQLPASSWORD}
     ports:
-      - "3306:3306"
+      - "${PUERTO_EXTERNO_MYSQL}:3306"
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -22,6 +22,6 @@ services:
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
-      - "8080:80"
+      - "${PUERTO_EXTERNO_PHPMYADMIN}:80"
     depends_on:
       - contenedordb
