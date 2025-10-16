@@ -153,8 +153,7 @@ const validarLogin = (e) =>{
     /*Obtener los valores o values (propiedad especifica) de los campos, se le aplica el metodo trim, para remover espacios antes y 
     despues del string  */
     const emailUsuario = document.getElementById('usuario').value.trim();
-    const password = document.getElementById('password').value.trim();
-    sessionStorage.setItem('usuario', emailUsuario)
+    const password = document.getElementById('password').value.trim();    
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailUsuario.length < 10){
         Swal.fire({
@@ -191,7 +190,9 @@ const validarLogin = (e) =>{
                 icon: 'warning',
                 confirmButtonText: 'Reintentar'});
         esValido = false; }            
-
+    if (esValido){
+        sessionStorage.setItem('usuario', emailUsuario)
+    }        
     if (esValido) {                              
         Swal.fire({
                 title: '¡Login Completado!',
@@ -202,6 +203,7 @@ const validarLogin = (e) =>{
                 setTimeout(()=>{window.location.replace('redireccion.html')}, 4000);
                 
         }
+       
 }
 // funcion flecha para validar el envio de consultas de potenciales clientes
 const validarConsulta = (event) => {
