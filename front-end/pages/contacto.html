@@ -42,18 +42,38 @@
 </nav>
     </div>
     <div class="p-4 m-4 text-center">
-        <section><div><h1 class="h3 text-center m-2">¡Contáctenos por consultas o contrataciones!</h1></div></section>
-    <section><div><h2 class="h4 text-center m-3 p-3">Complete el siguiente formulario:</h2></div></section>
+        <section><div><h1 class="h3 text-center m-1">¡Contáctenos por consultas o contrataciones!</h1></div></section>
+    <section><div><h2 class="h4 text-center m-1 p-3">Complete el siguiente formulario:</h2></div></section>
     <section class="h6">
           <form form action="/consulta"  method="POST"  onsubmit="return validarConsulta(event)" class="text-start m-3" id="loginForm" novalidate>
-              <div class="m-3 p-4">
+              
+        <div class="row m-1 p-4">
+          <div class="col-md-4 p-1">
         <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="nombre@gmail.com">
+        <input type="email" class="form-control" id="consulta_email" placeholder="nombre@gmail.com">
         </div>
-
-        <div class="m-3 p-4">
+        <div class="col-md-4 p-1">
+            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="consulta_nombre" placeholder="Marcelo">
+        </div>
+        <div class="col-md-4 p-1">
+            <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="consulta_apellido" placeholder="Juarez">
+        </div>
+    </div>
+        <div class="row m-1 p-4">
+          <div class="col-md-4 p-1">
+        <label for="exampleFormControlInput1" class="form-label">Telefono</label>
+        <input type="text" class="form-control" id="consulta_telefono" placeholder="3510000000">
+        </div>
+        <div class="col-md-4 p-1">
+        <label for="exampleFormControlInput1" class="form-label">Motivo</label>
+        <input type="text" class="form-control" id="consulta_motivo" placeholder="solicitar info/precio">
+        </div>
+        <div class="m-1 p-4">
+        </div>
         <label for="exampleFormControlTextarea1" class="form-label">Escriba su consulta aqui</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <textarea class="form-control" id="consulta_cuerpo" rows="3"></textarea>
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-primary ">Enviar</button>

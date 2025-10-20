@@ -212,10 +212,58 @@ const validarConsulta = (event) => {
     /* Obtener los valores o values (propiedad especifica) de los campos, se le aplica el metodo trim, para remover espacios antes y 
     despues del string  */     
     const consulta = {
-        email : document.getElementById('exampleFormControlInput1').value.trim(),
-        infoConsulta : document.getElementById('exampleFormControlTextarea1').value.trim(),
+        nombre : document.getElementById('consulta_nombre').value.trim(),
+        apellido : document.getElementById('consulta_apellido').value.trim(),
+        telefono : document.getElementById('consulta_telefono').value.trim(),
+        motivo: document.getElementById('consulta_motivo').value.trim(),
+        email : document.getElementById('consulta_email').value.trim(),
+        infoConsulta : document.getElementById('consulta_cuerpo').value.trim(),
+        fecha: new Date()
+    }
+    const consultaparaenviar = {
+        remitente : consulta.email,
+        cuerpo : `El Sr. ${consulta.nombre} ${consulta.apellido}, 
+                  con Telefono: ${consulta.telefono} , 
+                  Motivo: ${consulta.motivo}, 
+                  CONSULTA: ${consulta.infoConsulta}.`
     }       
     let esValido = true
+    // validar nombre
+    if (consulta.nombre.length < 3 || consulta.nombre.length > 100) {
+        Swal.fire({
+                title: '¡Aviso de nombre invalido!',
+                text: 'coloque un nombre de al menos 3 caracteres',
+                icon: 'warning',
+                confirmButtonText: 'Reintentar'});
+        esValido = false;
+    }
+    // validar apellido
+    if (consulta.nombre.length < 2 || consulta.nombre.length > 100) {
+        Swal.fire({
+                title: '¡Aviso de apellido invalido!',
+                text: 'coloque un apellido de al menos 2 caracteres',
+                icon: 'warning',
+                confirmButtonText: 'Reintentar'});
+        esValido = false;
+    }
+    // validar telefono
+    if (consulta.telefono.length < 10 || consulta.telefono.length > 14) {
+        Swal.fire({
+                title: '¡Aviso de telefono invalido!',
+                text: 'coloque un telefono de al menos 10 digitos',
+                icon: 'warning',
+                confirmButtonText: 'Reintentar'});
+        esValido = false;
+    }
+    // validar motivo
+    if (consulta.motivo.length < 6 || consulta.motivo.length > 100) {
+        Swal.fire({
+                title: '¡Aviso de motivo/asunto invalido!',
+                text: 'coloque un apellido de al menos 6 caracteres',
+                icon: 'warning',
+                confirmButtonText: 'Reintentar'});
+        esValido = false;
+    } 
     //Validar el Email remitente(Formato) con expresion regular
     const expresion = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!expresion.test(consulta.email)) {
@@ -236,12 +284,13 @@ const validarConsulta = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
+    // segun la documentacion de la api formsubmit.co solo recibe nombre asunto y consulta
     //si paso a este punto es que todos los inputs son en principios validos
     if (esValido) {
         // declaro la variable para la url de la api
         const urlconEmail = `https://formsubmit.co/ajax/${consulta.email}`;
         //BLOQUE DE IMPLEMENTACION DE SMTP, adentro de este if ya todos los inputs son VALIDOS
-        esValido = reutilizarFetch(urlconEmail, consulta)
+        esValido = reutilizarFetch(urlconEmail, consultaparaenviar)
         console.log(`el valor devuelto del fetch es: ${esValido}`)
         if(!esValido){
              Swal.fire({
