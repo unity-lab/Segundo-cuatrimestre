@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión</title>
+    <title>Productos y servicios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body class="contenedorPrincipal">
     <div>
-     <nav class="custom-navbar navbar navbar-expand-lg navbar-dark">
+<nav class="custom-navbar navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">SIGESA</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,38 +39,22 @@
     </div>
   </div>
 </nav>
-</nav>
     </div>
-    
-        <section class="h3 text-center m-4">
-        <h2 class="p-2">Inicio de sesion para Usuarios Registrados</h2>
-        </section>
+    <section class="text-center p-1">
+    <div class="h3 p-1 m-1">Portal del paciente</div>
+    <container class="contenedor"> <img  class="imagen" src="../img/proyecto-img6.jpg" alt=""></container>
+    <div class="p-4 m-4"> 
+        <h4>Portal del paciente — Gestión online simple y segura</h4>
+        <p>Brindá a tus pacientes una experiencia moderna y autónoma con nuestro portal digital. Este servicio permite ofrecer una página web personalizada, donde cada paciente puede acceder a su cuenta y realizar trámites de forma rápida y segura, sin depender de la atención presencial.
 
-        <main class="container p-4 mb-4">
-        <section class="p-4">
-            <form class="p-4" action="/login"  method="POST"  onsubmit="return validarLogin(event)" class="text-start m-3" id="loginForm" novalidate>
-                <div class="mb-3 py-3">
-                    <label for="usuario" class="form-label h4">Usuario</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" required minlength="4" maxlength="100">
-                </div>
-                <div class="mb-3 py-3">
-                    <label for="password" class="form-label h4">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" required minlength="6" maxlength="20">
-                </div>
-                <div class="text-center h3">
-                  <button type="submit" class="btn btn-primary h3">Ingresar</button>
-                </div>
-                <div id="loginMsg" class="mt-3"></div>
-            </form>
-        </section>
-    </main>
-        
+Desde este espacio, podrán gestionar turnos, consultar su historial médico, descargar documentos y resolver inquietudes al instante, todo desde cualquier dispositivo.
+Diseñado para mejorar la comunicación entre pacientes y profesionales, el portal optimiza los procesos administrativos y reduce la carga de trabajo del personal.
 
+Ideal para clínicas y consultorios que buscan digitalizar su atención y ofrecer un servicio más accesible y eficiente.</p>
+<p>Beneficio final: pacientes más satisfechos, procesos más ágiles y una gestión moderna de la salud.</p>
     </div>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
- 
-    <script src="../index.js"></script>
-    <footer class="footer-fijo mt-auto py-3 bg-dark">
+</section>
+<footer class="footer-fijo mt-auto py-3 bg-dark">
     <div class="container-fluid">
         <ul class="nav justify-content-center">
             <li class="nav-item">
@@ -90,4 +73,3 @@
     </div>
 </footer>
 </body>
-</html>
