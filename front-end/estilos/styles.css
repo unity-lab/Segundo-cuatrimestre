@@ -99,3 +99,25 @@ color: rgb(28, 28, 28);;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+.btn{
+ 
+  background-color:rgb(7, 12, 72);
+  border-color: rgb(7, 12, 72);
+  margin-bottom: 50px;
+
+}
+.btn:hover{
+  background-color: rgb(18, 24, 112);
+  border-color: rgb(18, 24, 112);
+}
+.contbot{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+.vuelta{
+  display: flex;
+  justify-content: left;
+  margin-top: 20px;
+}

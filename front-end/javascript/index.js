@@ -36,10 +36,12 @@ const validarRegistro = (event) => {
     /*Obtener los valores o values (propiedad especifica) de los campos,
     se le aplica el metodo trim, para remover espacios antes y despues del string
     */
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const nombre = document.getElementById('nombre').value.trim();
     const apellido = document.getElementById('apellido').value.trim();
     const dni = document.getElementById('dni').value.trim();
     const email = document.getElementById('email').value.trim();
+    const usuario = document.getElementById('nombre_usuario').value.trim();
     const fechaNacimiento = document.getElementById('fecha_nacimiento').value;
     const password = document.getElementById('password').value;
     const repassword = document.getElementById('repassword').value;    
@@ -52,7 +54,7 @@ const validarRegistro = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
-    if (nombre.length > 30){
+    else if (nombre.length > 30){
         Swal.fire({
                 title: '¡Aviso de NOMBRE invalido!',
                 text: 'coloque un NOMBRE menor a 30 caracteres.',
@@ -61,7 +63,7 @@ const validarRegistro = (event) => {
         esValido = false;
     }
     // VALIDACION DE APELLIDO (min y max del string)
-    if (apellido.length < 2){
+    else if (apellido.length < 2){
         Swal.fire({
                 title: '¡Aviso de APELLIDO invalido!',
                 text: 'coloque un APELLIDO como minimo de 2 caracteres.',
@@ -69,7 +71,7 @@ const validarRegistro = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
-    if (apellido.length > 30){
+    else if (apellido.length > 30){
         Swal.fire({
                 title: '¡Aviso de APELLIDO invalido!',
                 text: 'coloque un APELLIDO menor de 30 caracteres.',
@@ -78,7 +80,7 @@ const validarRegistro = (event) => {
         esValido = false;
     } 
     // validacion del largo del dni (es un number)
-    if (dni < 1000000 || dni > 200000000 || isNaN(dni)) {
+    else if (dni < 1000000 || dni > 200000000 || isNaN(dni)) {
         Swal.fire({
                 title: '¡Aviso de DNI invalido!',
                 text: 'coloque un DNI entre 1 millon y 200 millones.',
@@ -86,9 +88,17 @@ const validarRegistro = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
+    // validar usuario
+    else if (usuario.length < 5 || usuario.length > 100){
+        Swal.fire({
+                title: '¡Aviso de usuario invalido!',
+                text: 'coloque un usuario no menor de 5 caracteres.',
+                icon: 'warning',
+                confirmButtonText: 'Reintentar'});
+        esValido = false;
+    }
     //Validar Email (Formato) con expresion regular
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
+    else if (!emailPattern.test(email)) {       
         Swal.fire({
                 title: '¡Aviso de Email invalido!',
                 text: 'coloque un email valido',
@@ -97,7 +107,7 @@ const validarRegistro = (event) => {
         esValido = false;
     }
     //Validar Contraseña (Longitud y Coincidencia)
-    if (password.length < 8) {
+    else if (password.length < 8) {
         Swal.fire({
                 title: '¡Aviso de password invalido!',
                 text: 'coloque un password de al menos 8 digitos',
@@ -105,7 +115,7 @@ const validarRegistro = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
-    if (password !== repassword) {
+    else if (password !== repassword) {
         Swal.fire({
                 title: '¡Aviso de passwords!',
                 text: 'las contraseñas no coinciden.',
@@ -114,7 +124,7 @@ const validarRegistro = (event) => {
         esValido = false;
     }
     // Validar Fecha de Nacimiento    
-    if (fechaNacimiento) {
+    else if (fechaNacimiento) {
         const fechaIngresada = new Date(fechaNacimiento);
         // valida que la fecha ingresada no sea posterior al dia de la fecha
         const hoy = new Date();
@@ -152,9 +162,9 @@ const validarLogin = (e) =>{
     let esValido = true;
     /*Obtener los valores o values (propiedad especifica) de los campos, se le aplica el metodo trim, para remover espacios antes y 
     despues del string  */
-    const emailUsuario = document.getElementById('usuario').value.trim();
+    const usuario = document.getElementById('usuario').value.trim();
     const password = document.getElementById('password').value.trim();    
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    /* const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailUsuario.length < 10){
         Swal.fire({
                 title: '¡Aviso de email invalido!',
@@ -180,10 +190,18 @@ const validarLogin = (e) =>{
                 icon: 'warning',
                 confirmButtonText: 'Reintentar'});
         esValido = false;
+    } */
+    // validar usuario
+    if (usuario.length < 5 || usuario.length > 100){        
+        Swal.fire({
+                title: '¡Aviso de Usuario Invalido!',
+                text: 'coloque un usuario no menor a 5 caracteres.',
+                icon: 'warning',
+                confirmButtonText: 'Reintentar'});
+        esValido = false;
     }
-    
     //Validar Contraseña (Longitud y Coincidencia) por el minimo de 8 caracteres del string
-    if (password.length < 8) {
+    else if (password.length < 8) {
          Swal.fire({
                 title: '¡Aviso de password!',
                 text: 'coloque una contraseña valida al menos con 8 digitos.',
@@ -191,7 +209,7 @@ const validarLogin = (e) =>{
                 confirmButtonText: 'Reintentar'});
         esValido = false; }            
     if (esValido){
-        sessionStorage.setItem('usuario', emailUsuario)
+        sessionStorage.setItem('usuario', usuario)
     }        
     if (esValido) {                              
         Swal.fire({
@@ -212,10 +230,57 @@ const validarConsulta = (event) => {
     /* Obtener los valores o values (propiedad especifica) de los campos, se le aplica el metodo trim, para remover espacios antes y 
     despues del string  */     
     const consulta = {
-        email : document.getElementById('exampleFormControlInput1').value.trim(),
-        infoConsulta : document.getElementById('exampleFormControlTextarea1').value.trim(),
+        nombre : document.getElementById('consulta_nombre').value.trim(),
+        apellido : document.getElementById('consulta_apellido').value.trim(),
+        telefono : document.getElementById('consulta_telefono').value.trim(),
+        motivo: document.getElementById('consulta_motivo').value.trim(),
+        email : document.getElementById('consulta_email').value.trim(),
+        infoConsulta : document.getElementById('consulta_cuerpo').value.trim()
+    }
+    const consultaparaenviar = {
+        remitente : consulta.email,
+        cuerpo : `El Sr. ${consulta.nombre} ${consulta.apellido}, 
+                  con Telefono: ${consulta.telefono} , 
+                  Motivo: ${consulta.motivo}, 
+                  CONSULTA: ${consulta.infoConsulta}.`
     }       
     let esValido = true
+    // validar nombre
+    if (consulta.nombre.length < 3 || consulta.nombre.length > 100) {
+        Swal.fire({
+                title: '¡Aviso de nombre invalido!',
+                text: 'coloque un nombre de al menos 3 caracteres',
+                icon: 'warning',
+                confirmButtonText: 'Reintentar'});
+        esValido = false;
+    }
+    // validar apellido
+    if (consulta.nombre.length < 2 || consulta.nombre.length > 100) {
+        Swal.fire({
+                title: '¡Aviso de apellido invalido!',
+                text: 'coloque un apellido de al menos 2 caracteres',
+                icon: 'warning',
+                confirmButtonText: 'Reintentar'});
+        esValido = false;
+    }
+    // validar telefono
+    if (consulta.telefono.length < 10 || consulta.telefono.length > 14) {
+        Swal.fire({
+                title: '¡Aviso de telefono invalido!',
+                text: 'coloque un telefono de al menos 10 digitos',
+                icon: 'warning',
+                confirmButtonText: 'Reintentar'});
+        esValido = false;
+    }
+    // validar motivo
+    if (consulta.motivo.length < 6 || consulta.motivo.length > 100) {
+        Swal.fire({
+                title: '¡Aviso de motivo/asunto invalido!',
+                text: 'coloque un apellido de al menos 6 caracteres',
+                icon: 'warning',
+                confirmButtonText: 'Reintentar'});
+        esValido = false;
+    } 
     //Validar el Email remitente(Formato) con expresion regular
     const expresion = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!expresion.test(consulta.email)) {
@@ -236,12 +301,13 @@ const validarConsulta = (event) => {
                 confirmButtonText: 'Reintentar'});
         esValido = false;
     }
+    // segun la documentacion de la api formsubmit.co solo recibe nombre asunto y consulta
     //si paso a este punto es que todos los inputs son en principios validos
     if (esValido) {
         // declaro la variable para la url de la api
         const urlconEmail = `https://formsubmit.co/ajax/${consulta.email}`;
         //BLOQUE DE IMPLEMENTACION DE SMTP, adentro de este if ya todos los inputs son VALIDOS
-        esValido = reutilizarFetch(urlconEmail, consulta)
+        esValido = reutilizarFetch(urlconEmail, consultaparaenviar)
         console.log(`el valor devuelto del fetch es: ${esValido}`)
         if(!esValido){
              Swal.fire({
@@ -268,15 +334,15 @@ const validarConsulta = (event) => {
 // jugando con el dom y la carga de variables de sessionStorage
 // esta funcion se ejecuta con el evento onload del html, no es llamado por ningun submit o button onclick
 window.onload = () => {
-    const emailGuardado = sessionStorage.getItem('usuario'); // recupero el mail de la sesion local
+    const usuario = sessionStorage.getItem('usuario'); // recupero el mail de la sesion local
     let idBienvenido = document.getElementById('bienvenido'); // tomo el elemento con este id
 
-    if (emailGuardado && idBienvenido) {
-        idBienvenido.textContent = `¡Bienvenido/a, ${emailGuardado}!`;        
+    if (usuario && idBienvenido) {
+        idBienvenido.textContent = `¡Bienvenido/a, ${usuario}!`;        
         // Eliminar la variable después de usarla
         sessionStorage.removeItem('usuario');
     }
-    if (idBienvenido && emailGuardado == null || emailGuardado == ""){
+    if (idBienvenido && usuario == null || usuario == ""){
         idBienvenido.textContent = "Bienvenido/a. Por favor, inicie sesión.";
     }
 }
