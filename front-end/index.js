@@ -217,8 +217,7 @@ const validarConsulta = (event) => {
         telefono : document.getElementById('consulta_telefono').value.trim(),
         motivo: document.getElementById('consulta_motivo').value.trim(),
         email : document.getElementById('consulta_email').value.trim(),
-        infoConsulta : document.getElementById('consulta_cuerpo').value.trim(),
-        fecha: new Date()
+        infoConsulta : document.getElementById('consulta_cuerpo').value.trim()
     }
     const consultaparaenviar = {
         remitente : consulta.email,
